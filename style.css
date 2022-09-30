@@ -49,16 +49,17 @@ table {
 	justify-content: space-between;
 	align-items: center;
 	padding: 2rem;
-	font-family: Anurati;
 }
 
 .header .topbar h1 {
 	font-size: 48px;
+	font-family: Anurati;
 }
 
 .header .topbar a {
 	z-index: 2;
 	font-size: 28px;
+	font-family: Quantify;
 }
 
 .header .row {
@@ -66,14 +67,14 @@ table {
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
-	height: 30rem;
+	height: 45rem;
 	font-family: 'Poppins', sans-serif;
 }
 
 .header .row .slogan {
 	min-width: 50%;
 	max-width: 500px;
-	font-size: 64px;
+	font-size: 96px;
 }
 
 .header .row img {
@@ -94,6 +95,7 @@ table {
 
 .container .filters {
 	min-width: 200px;
+	max-width: 200px;
 	height: 400px;
 	padding: 2rem 0;
 	box-shadow: 0 0 10px 5px #eee;

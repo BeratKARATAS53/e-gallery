@@ -9,8 +9,7 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 
 	<title>E-Galeri</title>
@@ -39,16 +38,15 @@
 			<button id="neon-button" class="btn pointer" onclick="filter('neon')">Neon</button>
 			<button id="landscape-button" class="btn pointer" onclick="filter('landscape')">Manzara</button>
 			<button id="art-button" class="btn pointer" onclick="filter('art')">Sanat</button>
+			<button id="anime-button" class="btn pointer" onclick="filter('anime')">Anime</button>
+			<button id="cook-button" class="btn pointer" onclick="filter('cook')">Yemek</button>
 		</div>
 		<div class="images">
 			<div class="view-buttons mb-3">
 				Görünüm
-				<img id="big-icon" class="btn-icon pointer active ml-2"
-					src="https://img.icons8.com/color/48/000000/four-squares.png" onclick="changeView('big')" />
-				<img id="small-icon" class="btn-icon pointer ml-2"
-					src="https://img.icons8.com/color/48/000000/activity-grid-2.png" onclick="changeView('small')" />
-				<img id="list-icon" class="btn-icon pointer ml-2"
-					src="https://img.icons8.com/fluency/48/000000/view-headline.png" onclick="changeView('list')" />
+				<img id="big-icon" class="btn-icon pointer active ml-2" src="https://img.icons8.com/ios-filled/50/000000/four-squares.png" onclick="changeView('big')" />
+				<img id="small-icon" class="btn-icon pointer ml-2" src="https://img.icons8.com/ios-filled/50/000000/grid.png" onclick="changeView('small')" />
+				<img id="list-icon" class="btn-icon pointer ml-2" src="https://img.icons8.com/ios-filled/50/000000/list.png" onclick="changeView('list')" />
 			</div>
 			<div id="content" class="content"></div>
 		</div>
@@ -61,6 +59,7 @@
 	</div>
 
 	<script>
+		// Sonrasında fotoğraf eklemek kolay olsun ve kod karmaşası ortadan kalksın diye veriler bu şekilde ekleniyor.
 		const images = [
 			{ title: 'art 1', src: 'assets/art 1.webp', date: '22.02.2022', desc: 'Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır.', category: ['art'] },
 			{ title: 'art 2', src: 'assets/art 2.jpg', date: '12.02.2022', desc: ' Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500\'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.', category: ['art'] },
@@ -82,22 +81,35 @@
 			{ title: 'neon 1', src: 'assets/neon 1.jpg', date: '22.02.2020', desc: 'Bu da, bu üreteci İnternet üzerindeki gerçek Lorem Ipsum üreteci yapar.', category: ['neon'] },
 			{ title: 'neon 2', src: 'assets/neon 2.jpg', date: '14.11.2022', desc: 'Bu üreteç, 200\'den fazla Latince sözcük ve onlara ait cümle yapılarını içeren bir sözlük kullanır.', category: ['neon'] },
 			{ title: 'neon 3', src: 'assets/neon 3.jpg', date: '15.12.2022', desc: 'Bu nedenle, üretilen Lorem Ipsum metinleri yinelemelerden, mizahtan ve karakteristik olmayan sözcüklerden uzaktır.', category: ['neon'] },
-			{ title: 'neon 4', src: 'assets/neon 4.jpg', date: '11.06.2022', desc: ' Yıllar içinde, bazen kazara, bazen bilinçli olarak (örneğin mizah katılarak), çeşitli sürümleri geliştirilmiştir.', category: ['neon'] },
+			{ title: 'neon 4', src: 'assets/neon 4.jpg', date: '11.06.2022', desc: 'Yıllar içinde, bazen kazara, bazen bilinçli olarak (örneğin mizah katılarak), çeşitli sürümleri geliştirilmiştir.', category: ['neon'] },
+			{ title: 'anime 1', src: 'assets/anime 1.jpg', date: '14.02.2021', desc: '1500\'lerden beri kullanılmakta olan standard Lorem Ipsum metinleri ilgilenenler için yeniden üretilmiştir.', category: ['anime'] },
+			{ title: 'anime 2', src: 'assets/anime 2.jpg', date: '13.09.2021', desc: 'Çiçero tarafından yazılan 1.10.32 ve 1.10.33 bölümleri de 1914 H. Rackham çevirisinden alınan İngilizce sürümleri eşliğinde özgün biçiminden yeniden üretilmiştir.', category: ['anime'] },
+			{ title: 'anime 3', src: 'assets/anime 3.jpg', date: '13.09.2022', desc: 'Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir.Şu anda birçok masaüstü yayıncılık paketi ve web sayfa düzenleyicisi, varsayılan mıgır metinler olarak Lorem Ipsum kullanmaktadır.', category: ['anime'] },
+			{ title: 'anime 4', src: 'assets/anime 4.jpg', date: '15.07.2022', desc: 'Lorem Ipsum kullanmanın amacı, sürekli \'buraya metin gelecek, buraya metin gelecek\' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır.', category: ['anime'] },
+			{ title: 'anime 5', src: 'assets/anime 5.jpg', date: '11.07.2022', desc: 'Lorem Ipsum pasajlarının birçok çeşitlemesi vardır.', category: ['anime', 'neon'] },
+			{ title: 'anime 6', src: 'assets/anime 6.jpg', date: '19.07.2021', desc: 'Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir.', category: ['anime'] },
+			{ title: 'anime 8', src: 'assets/anime 7.webp', date: '22.02.2020', desc: 'Eğer bir Lorem Ipsum pasajı kullanacaksanız, metin aralarına utandırıcı sözcükler gizlenmediğinden emin olmanız gerekir', category: ['anime'] },
 		];
-		var type = 'all';
-		var view = 'big';
+		var category = 'all'; // İlk açılışta tüm kategorilerin gösterilmesi için.
+		var view = 'big'; // İlk açılışta fotoğrafların büyük gösterilmesi için.
 
 		setPage(images, view);
 
+		/**
+		 * Kategori ve görünüm ile farklı kombinasyonlar yapılsa bile sayfayı oluşturmak için aynı kodlar kullanılacağı için bu kodlar bir fonksiyonda birleştirildi.
+		 * Bu fonksiyon fotoğrafları içeren diziyi ve görünüm değerini alarak fotoğrafları listeleyecek html elemenlarını ekliyor.
+		 */
 		function setPage(images, view) {
 			const content = document.getElementById('content');
 
+			// Filtreleme yapılınca eski fotoğraflar sıkıntı oluşturacağı için tüm içerik siliniyor.
 			let child = content.lastElementChild;
 			while (child) {
 				content.removeChild(child);
 				child = content.lastElementChild;
 			}
 
+			// Seçilen kategoriye ait fotoğraf yoksa uyarı metni gösteriliyor.
 			if (!images.length) {
 				const warningText = document.createElement('p');
 				warningText.innerText = 'Seçtiğiniz kategoriye ait fotoğraf bulunamadı.';
@@ -105,6 +117,7 @@
 				return;
 			}
 
+			// Görünüm liste ise tablo oluşturuluyor, değilse üzerine gelince dosya isminin gösterildiği kartlar oluşturuluyor.
 			if (view === 'list') {
 				const table = document.createElement('table');
 				const tr = document.createElement('tr');
@@ -127,7 +140,6 @@
 				table.appendChild(tr);
 
 				for (const image of images) {
-
 					const tr = document.createElement('tr');
 
 					const imageCol = document.createElement('td');
@@ -163,6 +175,8 @@
 
 					const img = document.createElement('img');
 					img.src = image.src;
+					// Fotoğrafı önizlemek için
+					img.addEventListener('click', e => window.open(e.srcElement.currentSrc));
 					imgCard.appendChild(img);
 
 					const info = document.createElement('div');
@@ -180,25 +194,29 @@
 		}
 
 		function changeView(view) {
-			const filteredImages = images.filter(image => image.category.includes(window.type));
-			setPage(type === 'all' ? images : filteredImages, view);
+			const filteredImages = images.filter(image => image.category.includes(window.category));
+			setPage(category === 'all' ? images : filteredImages, view);
+			// Görünüm değiştikten sonra kategori değiştirilse verinin aynı görünümde gösterilmesi için global değişkene atama yapılıyor.
 			window.view = view;
 
+			// Hangi görünümün aktif olduğunu belirlemek için.
 			const filterButtons = document.getElementsByClassName('btn-icon');
 			Array.prototype.forEach.call(filterButtons, filterButton => filterButton.classList.remove('active'));
 
 			document.getElementById(view + '-icon').classList.add('active');
 		}
 
-		function filter(type) {
-			const filteredImages = images.filter(image => image.category.includes(type));
-			setPage(type === 'all' ? images : filteredImages, window.view);
-			window.type = type;
+		function filter(category) {
+			const filteredImages = images.filter(image => image.category.includes(category));
+			setPage(category === 'all' ? images : filteredImages, window.view);
+			// Kategori değiştikten sonra görünüm değiştirilse aynı kategoriye ait verinin gösterilmesi için global değişkene atama yapılıyor.
+			window.category = category;
 
+			// Hangi kategorinin aktif olduğunu belirlemek için.
 			const filterButtons = document.getElementsByClassName('btn');
 			Array.prototype.forEach.call(filterButtons, filterButton => filterButton.classList.remove('active'));
 
-			document.getElementById(type + '-button').classList.add('active');
+			document.getElementById(category + '-button').classList.add('active');
 		}
 	</script>
 </body>
