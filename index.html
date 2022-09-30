@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
+	<title>E-Galeri</title>
+</head>
+
+<body>
+	<!-- Örnek tasarıma şu linkten ulaşabilirsiniz: https://www.figma.com/file/RP9qkTB6JxQBAP12XCwzKB/E-Gallery?node-id=0%3A1 -->
+	<div class="header">
+		<div class="topbar">
+			<h1>E-GALERI</h1>
+			<a class="pointer" href="https://beratkaratas53.github.io/profile-blog-deploy/" target="blank">CV</a>
+		</div>
+
+		<div class="row">
+			<div class="slogan">Fotoğraflarını güvende tutmanın en kolay yolu</div>
+			<img src="assets/gallery.svg" alt="Logo">
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="filters">
+			<h3 class="mb-3">Kategoriler</h3>
+
+			<button id="all-button" class="btn pointer active" onclick="filter('all')">Tümü</button>
+			<button id="cars-button" class="btn pointer" onclick="filter('cars')">Araba</button>
+			<button id="neon-button" class="btn pointer" onclick="filter('neon')">Neon</button>
+			<button id="landscape-button" class="btn pointer" onclick="filter('landscape')">Manzara</button>
+			<button id="art-button" class="btn pointer" onclick="filter('art')">Sanat</button>
+		</div>
+		<div class="images">
+			<div class="view-buttons mb-3">
+				Görünüm
+				<img id="big-icon" class="btn-icon pointer active ml-2"
+					src="https://img.icons8.com/color/48/000000/four-squares.png" onclick="changeView('big')" />
+				<img id="small-icon" class="btn-icon pointer ml-2"
+					src="https://img.icons8.com/color/48/000000/activity-grid-2.png" onclick="changeView('small')" />
+				<img id="list-icon" class="btn-icon pointer ml-2"
+					src="https://img.icons8.com/fluency/48/000000/view-headline.png" onclick="changeView('list')" />
+			</div>
+			<div id="content" class="content"></div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<a class="mb-3" href="https://www.linkedin.com/in/berat-karatas/" target="_blank">LinkedIn</a>
+		<a class="mb-3" href="https://github.com/BeratKARATAS53" target="_blank">GitHub</a>
+		<div>D. Berat KARATAŞ tarafından geliştirilmiştir. Tüm hakları saklıdır. 2022</div>
+	</div>
+
+	<script>
+		const images = [
+			{ title: 'art 1', src: 'assets/art 1.webp', date: '22.02.2022', desc: 'Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır.', category: ['art'] },
+			{ title: 'art 2', src: 'assets/art 2.jpg', date: '12.02.2022', desc: ' Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500\'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.', category: ['art'] },
+			{ title: 'art 3', src: 'assets/art 3.jpg', date: '15.12.2022', desc: '1960\'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.', category: ['art'] },
+			{ title: 'cars 1', src: 'assets/cars 1.jpg', date: '11.11.2022', desc: 'Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz.', category: ['cars'] },
+			{ title: 'cars 2', src: 'assets/cars 2.webp', date: '14.01.2021', desc: 'Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır.', category: ['cars'] },
+			{ title: 'cars 3', src: 'assets/cars 3.jpg', date: '16.11.2020', desc: 'Virginia\'daki Hampden-Sydney College\'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan \'consectetur\' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır.', category: ['cars', 'neon'] },
+			{ title: 'cars 4', src: 'assets/cars 4.jpg', date: '01.02.2020', desc: 'Lorem Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan "de Finibus Bonorum et Malorum" (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir.', category: ['cars', 'neon'] },
+			{ title: 'cars 5', src: 'assets/cars 5.webp', date: '14.02.2021', desc: 'Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur.', category: ['cars'] },
+			{ title: 'cars 6', src: 'assets/cars 6.jpg', date: '14.10.2021', desc: 'Lorem Ipsum pasajının ilk satırı olan "Lorem ipsum dolor sit amet" 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.', category: ['cars'] },
+			{ title: 'landscape 1', src: 'assets/landscape 1.jpg', date: '14.02.2021', desc: '1500\'lerden beri kullanılmakta olan standard Lorem Ipsum metinleri ilgilenenler için yeniden üretilmiştir.', category: ['landscape'] },
+			{ title: 'landscape 2', src: 'assets/landscape 2.jpg', date: '13.09.2021', desc: 'Çiçero tarafından yazılan 1.10.32 ve 1.10.33 bölümleri de 1914 H. Rackham çevirisinden alınan İngilizce sürümleri eşliğinde özgün biçiminden yeniden üretilmiştir.', category: ['landscape', 'art'] },
+			{ title: 'landscape 3', src: 'assets/landscape 3.jpg', date: '13.09.2022', desc: 'Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir.Şu anda birçok masaüstü yayıncılık paketi ve web sayfa düzenleyicisi, varsayılan mıgır metinler olarak Lorem Ipsum kullanmaktadır.', category: ['landscape'] },
+			{ title: 'landscape 4', src: 'assets/landscape 4.jpg', date: '15.07.2022', desc: 'Lorem Ipsum kullanmanın amacı, sürekli \'buraya metin gelecek, buraya metin gelecek\' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır.', category: ['landscape'] },
+			{ title: 'landscape 5', src: 'assets/landscape 5.jpg', date: '11.07.2022', desc: 'Lorem Ipsum pasajlarının birçok çeşitlemesi vardır.', category: ['landscape', 'art'] },
+			{ title: 'landscape 6', src: 'assets/landscape 6.jpg', date: '19.07.2021', desc: 'Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir.', category: ['landscape', 'art'] },
+			{ title: 'landscape 8', src: 'assets/landscape 7.jpg', date: '22.02.2020', desc: 'Eğer bir Lorem Ipsum pasajı kullanacaksanız, metin aralarına utandırıcı sözcükler gizlenmediğinden emin olmanız gerekir', category: ['landscape', 'art'] },
+			{ title: 'landscape 8', src: 'assets/landscape 8.jpg', date: '22.02.2020', desc: 'İnternet\'teki tüm Lorem Ipsum üreteçleri önceden belirlenmiş metin bloklarını yineler.', category: ['landscape', 'art'] },
+			{ title: 'neon 1', src: 'assets/neon 1.jpg', date: '22.02.2020', desc: 'Bu da, bu üreteci İnternet üzerindeki gerçek Lorem Ipsum üreteci yapar.', category: ['neon'] },
+			{ title: 'neon 2', src: 'assets/neon 2.jpg', date: '14.11.2022', desc: 'Bu üreteç, 200\'den fazla Latince sözcük ve onlara ait cümle yapılarını içeren bir sözlük kullanır.', category: ['neon'] },
+			{ title: 'neon 3', src: 'assets/neon 3.jpg', date: '15.12.2022', desc: 'Bu nedenle, üretilen Lorem Ipsum metinleri yinelemelerden, mizahtan ve karakteristik olmayan sözcüklerden uzaktır.', category: ['neon'] },
+			{ title: 'neon 4', src: 'assets/neon 4.jpg', date: '11.06.2022', desc: ' Yıllar içinde, bazen kazara, bazen bilinçli olarak (örneğin mizah katılarak), çeşitli sürümleri geliştirilmiştir.', category: ['neon'] },
+		];
+		var type = 'all';
+		var view = 'big';
+
+		setPage(images, view);
+
+		function setPage(images, view) {
+			const content = document.getElementById('content');
+
+			let child = content.lastElementChild;
+			while (child) {
+				content.removeChild(child);
+				child = content.lastElementChild;
+			}
+
+			if (!images.length) {
+				const warningText = document.createElement('p');
+				warningText.innerText = 'Seçtiğiniz kategoriye ait fotoğraf bulunamadı.';
+				content.appendChild(warningText);
+				return;
+			}
+
+			if (view === 'list') {
+				const table = document.createElement('table');
+				const tr = document.createElement('tr');
+
+				const imageTH = document.createElement('th');
+				imageTH.width = 125;
+				const titleTH = document.createElement('th');
+				titleTH.innerText = 'Başlık';
+				titleTH.width = 135;
+				const descTH = document.createElement('th');
+				descTH.innerText = 'Açıklama';
+				const dateTH = document.createElement('th');
+				dateTH.innerText = 'Tarih';
+				dateTH.style.textAlign = 'right';
+
+				tr.appendChild(imageTH);
+				tr.appendChild(titleTH);
+				tr.appendChild(descTH);
+				tr.appendChild(dateTH);
+				table.appendChild(tr);
+
+				for (const image of images) {
+
+					const tr = document.createElement('tr');
+
+					const imageCol = document.createElement('td');
+					const img = document.createElement('img');
+					img.src = image.src;
+					img.width = 100;
+					imageCol.appendChild(img);
+					tr.appendChild(imageCol);
+
+					const titleCol = document.createElement('td');
+					titleCol.innerText = image.title.toUpperCase();
+					tr.appendChild(titleCol);
+
+					const descCol = document.createElement('td');
+					descCol.innerText = image.desc;
+					tr.appendChild(descCol);
+
+					const dateCol = document.createElement('td');
+					dateCol.innerText = image.date;
+					dateCol.style.textAlign = 'right';
+					tr.appendChild(dateCol);
+
+					table.appendChild(tr);
+				}
+
+				content.appendChild(table);
+			}
+			else {
+				for (const image of images) {
+					const imgCard = document.createElement('div');
+					imgCard.classList.add('img-card');
+					if (view === 'small') imgCard.classList.add('small');
+
+					const img = document.createElement('img');
+					img.src = image.src;
+					imgCard.appendChild(img);
+
+					const info = document.createElement('div');
+					info.classList.add('info');
+					imgCard.appendChild(info);
+
+					const title = document.createElement('div');
+					title.classList.add('title');
+					title.innerText = image.title.toUpperCase();
+					info.appendChild(title);
+
+					content.appendChild(imgCard);
+				}
+			}
+		}
+
+		function changeView(view) {
+			const filteredImages = images.filter(image => image.category.includes(window.type));
+			setPage(type === 'all' ? images : filteredImages, view);
+			window.view = view;
+
+			const filterButtons = document.getElementsByClassName('btn-icon');
+			Array.prototype.forEach.call(filterButtons, filterButton => filterButton.classList.remove('active'));
+
+			document.getElementById(view + '-icon').classList.add('active');
+		}
+
+		function filter(type) {
+			const filteredImages = images.filter(image => image.category.includes(type));
+			setPage(type === 'all' ? images : filteredImages, window.view);
+			window.type = type;
+
+			const filterButtons = document.getElementsByClassName('btn');
+			Array.prototype.forEach.call(filterButtons, filterButton => filterButton.classList.remove('active'));
+
+			document.getElementById(type + '-button').classList.add('active');
+		}
+	</script>
+</body>
+
+</html>
