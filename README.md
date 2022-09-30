@@ -1,4 +1,4 @@
-![Logo](https://i.ibb.co/FWCKyQ4/Ekran-G-r-nt-s-2022-09-30-23-30-33-removebg-preview.png)
+![Logo](https://i.ibb.co/ZGYCS3s/Ekran-G-r-nt-s-2022-09-30-23-30-33.png")
 
 E-Galeri fotoğraflarınızı görüntüleyebileceğiniz bir platform.
 
